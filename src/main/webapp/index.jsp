@@ -150,11 +150,13 @@
         <br><br>
         <label>Registration Fee <span class="required">*</span></label>
         <br>
-        <input type="radio" id="feenormal" name="attendance">
+       <div>
+        <input type="radio" id="feenormal" name="registration">
         <div>
             <label for="yes">Conference Registration Fee (Normal Participant)</label>
             <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
         </div>
+       </div>
         <div class="helper-text">
             <span class="helper-text" style="margin-right: 5px;"># of papers</span>
 
@@ -167,10 +169,12 @@
             </select>
         </div>
         <br>
-        <input type="radio" id="feestudent" name="attendance">
+        <div>
+        <input type="radio" id="feestudent" name="registration">
         <div>
             <label for="yes">Conference Registration Fee (Student Participant)</label>
             <label id="normalParticipant"  style="text-indent: 50px;"> 300.00MYR</label><br>
+        </div>
         </div>
         <div class="helper-text">
             <span class="helper-text" style="margin-right: 5px;"># of papers</span>
