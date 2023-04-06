@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Search Tool</title>
 </head>
 <body>
 <form>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <br>
-    <button style="background-color: blue; color: white;margin-left: 70px;" type="button">  back  </button>
+    <button style="background-color: blue; color: white;margin-left: 70px;" type="button" onclick="location.href='index.jsp';">  back  </button>
 </form>
 </body>
 </html>

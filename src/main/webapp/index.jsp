@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,12 +14,12 @@
         .helper-text {
             font-size: 12px;
             color: #888;
-            margin-right: 150px;
+            /*margin-right: 150px;*/
         }
 
-        .name-fields input {
+        /*.name-fields input {
             margin-right: 50px;
-        }
+        }*/
         label .required {
             color: red;
         }
@@ -33,9 +32,9 @@
             margin-right: 0;
         }
         .c{
-            width: 700px;
+            width: 500px;
             float: left;
-            margin-left: 20px;
+            margin-left: 200px;
         }
         .ca{
             width: 700px;
@@ -150,13 +149,111 @@
         <br><br>
         <label>Registration Fee <span class="required">*</span></label>
         <br>
-       <div>
-        <input type="radio" id="feenormal" name="registration">
+
+    <!--   <div>
+        <input type="radio" id="feeNormal" name="registration">
         <div>
             <label for="yes">Conference Registration Fee (Normal Participant)</label>
             <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
         </div>
        </div>
+        <div class="helper-text">
+            <span class="helper-text" style="margin-right: 5px;"># of papers</span>
+
+            <select name="normal">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <br>
+        <div>
+        <input type="radio" id="feeStudent" name="registration">
+        <div>
+            <label for="yes">Conference Registration Fee (Student Participant)</label>
+            <label id="normalParticipant"  style="text-indent: 50px;"> 300.00MYR</label><br>
+        </div>
+        </div>
+        <div class="helper-text">
+            <span class="helper-text" style="margin-right: 5px;"># of papers</span>
+            <select name="student">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select></div>
+        <br>
+-->
+        <!--    <script>
+             function calculateTotal() {
+                 let normalChecked = document.getElementById("feeNormal").checked;
+                 let studentChecked = document.getElementById("feeStudent").checked;
+                 let normalPapers = document.getElementById("normal").value;
+                 let studentPapers = document.getElementById("student").value;
+                 let total = 0;
+                 if (normalChecked) {
+                     total += 500 * normalPapers;
+                 }
+                 if (studentChecked) {
+                     total += 300 * studentPapers;
+                 }
+
+                 return total;
+             }
+
+             let button = document.querySelector('button');
+             button.addEventListener('click', function() {
+                 let total = calculateTotal();
+                 let label = document.querySelector('label');
+                 label.innerHTML = "Total: " + total + " MYR";
+             });
+         </script>-->
+        <!--<script>
+        function calculateTotal() {
+            let total = 0;
+            let conferenceType = "";
+            let papers = 0;
+
+            // get the conference type
+            if (document.getElementById("feeNormal").checked) {
+                conferenceType = "normal";
+            } else if (document.getElementById("feeStudent").checked) {
+                conferenceType = "student";
+            }
+
+            // get the number of papers
+            if (conferenceType === "normal") {
+                papers = document.getElementById("normal").value;
+            } else if (conferenceType === "student") {
+                papers = document.getElementById("student").value;
+            }
+
+            // calculate the total amount
+            if (conferenceType === "normal") {
+                total = papers * 500;
+            } else if (conferenceType === "student") {
+                total = papers * 300;
+            }
+
+            // display the total amount
+            document.getElementById("totalAmount").innerHTML = "Total amount: " + total + "MYR";
+        }
+    </script> -->
+       <!-- <div>
+            <button style="background-color: blue; color: white;" type="button" onclick="calculateTotal()">Check The Total Amount</button>
+           <label style="margin-left: 180px;">Total  "" + 'MYR'</label>
+       </div>
+        -->
+        <div>
+            <input type="radio" id="feenormal" name="registration">
+            <div>
+                <label for="yes">Conference Registration Fee (Normal Participant)</label>
+                <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
+            </div>
+        </div>
         <div class="helper-text">
             <span class="helper-text" style="margin-right: 5px;"># of papers</span>
 
@@ -170,11 +267,11 @@
         </div>
         <br>
         <div>
-        <input type="radio" id="feestudent" name="registration">
-        <div>
-            <label for="yes">Conference Registration Fee (Student Participant)</label>
-            <label id="normalParticipant"  style="text-indent: 50px;"> 300.00MYR</label><br>
-        </div>
+            <input type="radio" id="feestudent" name="registration">
+            <div>
+                <label for="yes">Conference Registration Fee (Student Participant)</label>
+                <label id="normalParticipant" style="text-indent: 50px;">300.00MYR</label><br>
+            </div>
         </div>
         <div class="helper-text">
             <span class="helper-text" style="margin-right: 5px;"># of papers</span>
@@ -184,23 +281,47 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-            </select></div>
+            </select>
+        </div>
         <br>
         <div>
             <button style="background-color: blue; color: white;" type="button">Check The Total Amount</button>
-            <label style="margin-left: 180px;"><%
-
-
-
-
-            %></label>
+            <label id="totalLabel" style="margin-left: 180px;">Total  0.00 MYR</label>
         </div>
+
+        <script>
+            function calculateTotal() {
+                var normalFee = 500;
+                var studentFee = 300;
+                var normalPapers = document.getElementById("normal").value;
+                var studentPapers = document.getElementById("student").value;
+                var selectedFee, selectedPapers;
+
+                if (document.getElementById("feenormal").checked) {
+                    selectedFee = normalFee;
+                    selectedPapers = normalPapers;
+                } else if (document.getElementById("feestudent").checked) {
+                    selectedFee = studentFee;
+                    selectedPapers = studentPapers;
+                }
+
+                var totalAmount = selectedFee * selectedPapers;
+                return totalAmount;
+            }
+
+            document.querySelector("button").addEventListener("click", function() {
+                var totalAmount = calculateTotal();
+                var totalLabel = document.getElementById("totalLabel");
+                totalLabel.innerHTML = "Total " + totalAmount + "  MYR";
+            });
+        </script>
+
         <br>
-        <button style="background-color: blue; color: white;" type="button">Search Tool</button>
-        <input style="background-color: green;color: white; margin-left: 20px;" type="submit" value="Submit">
-        <input style="background-color:gray; color: white;margin-left: 20px;" type="reset" value="Reset">
-    </div>
-    </div>
+       <button style="background-color: blue; color: white;" type="button" onclick="location.href='search.jsp';">Search Tool</button>
+       <input style="background-color: green;color: white; margin-left: 20px;" type="submit" value="Submit">
+       <input style="background-color:gray; color: white;margin-left: 20px;" type="reset" value="Reset">
+   </div>
+   </div>
 </form>
 </body>
 </html>
