@@ -45,7 +45,7 @@
 <body>
 <h1>Conference Registration Form</h1>
 <h6>Please fill in the form below. We'll contact you as soon as possible</h6>
-<form action="processRegistration.jsp" method="post">
+<form action="insert.jsp" method="post" >
     <div class="c">
         <label>Full Name <span class="required">*</span></label>
         <div>
@@ -69,12 +69,12 @@
         <div class="form-group">
             <label>Address <span class="required">*</span></label>
             <div class="form-inline">
-                <input style="width: 53%;" type="text" id="street-address" name="street-address" required>
+                <input style="width: 53%;" type="text" id="address" name="address" required>
                 <br>
                 <div class="helper-text">
                     <span class="helper-text">Street Address</span>
                 </div>
-                <input style="width: 53%;" type="text" id="street-address2" name="street-address2">
+                <input style="width: 53%;" type="text" id="address2" name="address2">
                 <div class="helper-text">
                     <span class="helper-text">Street Address Line 2</span>
                 </div>
@@ -89,7 +89,7 @@
                     <span class="helper-text">State/Province</span>
                 </div>
 
-                <input type="text" id="postal-code" name="postal-code" required>
+                <input type="text" id="postal" name="postal" required>
                 <select id="country" name="country" required>
                     <option value="">Please Select</option>
                     <option value="Malaysia">Malaysia</option>
@@ -107,7 +107,7 @@
         </div>
         <label>Email <span class="required">*</span></label>
         <div class="form-inline">
-            <input type="text" id="Email" name="Email" placeholder="ex: myname@example.com" required>
+            <input type="text" id="email" name="email" placeholder="ex: myname@example.com" required>
             <div class="helper-text">
                 <span class="helper-text">example@example.com</span>
             </div>
@@ -115,31 +115,31 @@
         <br>
         <label>Phone Number <span class="required">*</span></label>
         <div class="form-inline">
-            <input type="text" id="Number" name="Number" placeholder="(000)000-0000" required>
+            <input type="text" id="phoneNo" name="phoneNo" placeholder="(000)000-0000" required>
         </div>
     </div>
     <div class="ca">
         <label>First time to attend this conference? <span class="required">*</span></label>
         <div >
-            <input type="radio" id="yes" name="attendance">
+            <input type="radio" id="yes" name="firstTime">
             <label for="yes">Yes</label><br>
-            <input type="radio" id="no" name="attendance">
+            <input type="radio" id="no" name="firstTime">
             <label for="No">No</label><br>
         </div>
         <br>
         <label>I will attend <span class="required">*</span></label>
         <div >
-            <input type="checkbox" id="event 1" name="event1">
+            <input type="checkbox" value="1" name="event">
             <label>Event 1 - Date of event 1</label><br>
-            <input type="checkbox" id="event 2" name="event2">
+            <input type="checkbox" value="2" name="event">
             <label>Event 2 - Date of event 2</label><br>
-            <input type="checkbox" id="event 3" name="event3">
+            <input type="checkbox" value="3" name="event">
             <label>Event 3 - Date of event 3</label><br>
         </div>
         <br>
         <label>What's your T-shirt size? <span class="required">*</span></label>
         <br>
-        <select id="t-shirt" name="t-shirt" required>
+        <select id="size" name="size" required>
             <option value="">Please Select</option>
             <option value="S">S</option>
             <option value="M">M</option>
@@ -248,7 +248,7 @@
        </div>
         -->
         <div>
-            <input type="radio" id="feenormal" name="registration">
+            <input type="radio" value="500" id="feenormal" name="registration">
             <div>
                 <label for="yes">Conference Registration Fee (Normal Participant)</label>
                 <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
@@ -267,7 +267,7 @@
         </div>
         <br>
         <div>
-            <input type="radio" id="feestudent" name="registration">
+            <input type="radio" value="300" id="feestudent" name="registration">
             <div>
                 <label for="yes">Conference Registration Fee (Student Participant)</label>
                 <label id="normalParticipant" style="text-indent: 50px;">300.00MYR</label><br>
