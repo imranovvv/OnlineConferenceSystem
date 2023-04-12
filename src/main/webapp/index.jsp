@@ -121,9 +121,9 @@
     <div class="ca">
         <label>First time to attend this conference? <span class="required">*</span></label>
         <div >
-            <input type="radio" id="yes" name="firstTime">
+            <input type="radio" id="yes" name="firstTime" value="yes">
             <label for="yes">Yes</label><br>
-            <input type="radio" id="no" name="firstTime">
+            <input type="radio" id="no" name="firstTime" value="no">
             <label for="No">No</label><br>
         </div>
         <br>
@@ -150,43 +150,43 @@
         <label>Registration Fee <span class="required">*</span></label>
         <br>
 
-    <!--   <div>
-        <input type="radio" id="feeNormal" name="registration">
-        <div>
-            <label for="yes">Conference Registration Fee (Normal Participant)</label>
-            <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
-        </div>
-       </div>
-        <div class="helper-text">
-            <span class="helper-text" style="margin-right: 5px;"># of papers</span>
+        <!--   <div>
+            <input type="radio" id="feeNormal" name="registration">
+            <div>
+                <label for="yes">Conference Registration Fee (Normal Participant)</label>
+                <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
+            </div>
+           </div>
+            <div class="helper-text">
+                <span class="helper-text" style="margin-right: 5px;"># of papers</span>
 
-            <select name="normal">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <br>
-        <div>
-        <input type="radio" id="feeStudent" name="registration">
-        <div>
-            <label for="yes">Conference Registration Fee (Student Participant)</label>
-            <label id="normalParticipant"  style="text-indent: 50px;"> 300.00MYR</label><br>
-        </div>
-        </div>
-        <div class="helper-text">
-            <span class="helper-text" style="margin-right: 5px;"># of papers</span>
-            <select name="student">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select></div>
-        <br>
--->
+                <select name="normal">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <br>
+            <div>
+            <input type="radio" id="feeStudent" name="registration">
+            <div>
+                <label for="yes">Conference Registration Fee (Student Participant)</label>
+                <label id="normalParticipant"  style="text-indent: 50px;"> 300.00MYR</label><br>
+            </div>
+            </div>
+            <div class="helper-text">
+                <span class="helper-text" style="margin-right: 5px;"># of papers</span>
+                <select name="student">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></div>
+            <br>
+    -->
         <!--    <script>
              function calculateTotal() {
                  let normalChecked = document.getElementById("feeNormal").checked;
@@ -242,13 +242,13 @@
             document.getElementById("totalAmount").innerHTML = "Total amount: " + total + "MYR";
         }
     </script> -->
-       <!-- <div>
-            <button style="background-color: blue; color: white;" type="button" onclick="calculateTotal()">Check The Total Amount</button>
-           <label style="margin-left: 180px;">Total  "" + 'MYR'</label>
-       </div>
-        -->
+        <!-- <div>
+             <button style="background-color: blue; color: white;" type="button" onclick="calculateTotal()">Check The Total Amount</button>
+            <label style="margin-left: 180px;">Total  "" + 'MYR'</label>
+        </div>
+         -->
         <div>
-            <input type="radio" value="500" id="feenormal" name="registration">
+            <input type="radio" value="normal" name="registration">
             <div>
                 <label for="yes">Conference Registration Fee (Normal Participant)</label>
                 <label class="participant" style="text-indent: 50px;"> 500.00MYR</label><br>
@@ -267,7 +267,7 @@
         </div>
         <br>
         <div>
-            <input type="radio" value="300" id="feestudent" name="registration">
+            <input type="radio" value="student" name="registration">
             <div>
                 <label for="yes">Conference Registration Fee (Student Participant)</label>
                 <label id="normalParticipant" style="text-indent: 50px;">300.00MYR</label><br>
@@ -297,10 +297,10 @@
                 var studentPapers = document.getElementById("student").value;
                 var selectedFee, selectedPapers;
 
-                if (document.getElementById("feenormal").checked) {
+                if (document.querySelector('input[name="registration"]:checked').value === "normal") {
                     selectedFee = normalFee;
                     selectedPapers = normalPapers;
-                } else if (document.getElementById("feestudent").checked) {
+                } else if (document.querySelector('input[name="registration"]:checked').value === "student") {
                     selectedFee = studentFee;
                     selectedPapers = studentPapers;
                 }
@@ -312,16 +312,17 @@
             document.querySelector("button").addEventListener("click", function() {
                 var totalAmount = calculateTotal();
                 var totalLabel = document.getElementById("totalLabel");
-                totalLabel.innerHTML = "Total " + totalAmount + "  MYR";
+                totalLabel.innerHTML = "Total " + totalAmount.toFixed(2) + " MYR";
             });
+
         </script>
 
         <br>
-       <button style="background-color: blue; color: white;" type="button" onclick="location.href='search.jsp';">Search Tool</button>
-       <input style="background-color: green;color: white; margin-left: 20px;" type="submit" value="Submit">
-       <input style="background-color:gray; color: white;margin-left: 20px;" type="reset" value="Reset">
-   </div>
-   </div>
+        <button style="background-color: blue; color: white;" type="button" onclick="location.href='search.jsp';">Search Tool</button>
+        <input style="background-color: green;color: white; margin-left: 20px;" type="submit" value="Submit">
+        <input style="background-color:gray; color: white;margin-left: 20px;" type="reset" value="Reset">
+    </div>
+    </div>
 </form>
 </body>
 </html>

@@ -32,11 +32,11 @@
     String registrationType = request.getParameter("registration");
     int numOfPapers=0;
     double registrationFee = 0;
-    if(registrationType.equals("feenormal")) {
+    if(registrationType.equals("normal")) {
         registrationFee = 500.00;
         numOfPapers=Integer.parseInt(request.getParameter("normal"));
 
-    } else if(registrationType.equals("feestudent")) {
+    } else if(registrationType.equals("student")) {
         registrationFee = 300.00;
         numOfPapers=Integer.parseInt(request.getParameter("student"));
 
@@ -46,13 +46,12 @@
     try
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/conference_db", "root", "");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/conference_db?autoReconnect=true&useSSL=false", "root", "");
         Statement st=con.createStatement();
-        Statement st2=con.createStatement();
-        String query="INSERT INTO Participant(firstname,lastname,area,address1,address2,city,state,postal,country,email,phoneNo,firstTime,size,type,total)";
-        st.executeUpdate("insert into Participant(firstname,lastname,area,address1,address2,city,state,postal,country,email,phoneNo,firstTime,size,type,total)" +
-                "values("+firstname+","+lastname+","+area+","+address+","+address2+","+city+","+state+","+postal+","+country+","+country+","+email+","+phoneNo+","+firstTime+","+size+","+type+","+total+")");
-        st2.executeUpdate("insert into Event(eventId)values ("+chooseevent+")");
+        //Statement st2=con.createStatement();
+        String query = "INSERT INTO conference_db.Participant(firstname,lastname,area,address1,address2,city,state,postal,country,email,phoneNo,firstTime,event,size,type,total) values('" + firstname + "','" + lastname + "','" + area + "','" + address + "','" + address2 + "','" + city + "','" + state + "','" + postal + "','" + country + "','" + email + "','" + phoneNo + "','" + firstTime + "','" + chooseevent + "','" + size + "','" + registrationType + "'," + total + ")";
+        st.executeUpdate(query);
+        //st2.executeUpdate("insert into Event(eventId)values ("+chooseevent+")");
         System.out.println("Data is successfully inserted!");
     }
     catch(Exception e)
