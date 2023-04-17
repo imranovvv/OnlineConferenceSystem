@@ -24,8 +24,8 @@
         <br>
         <br>
         <div>
-            <input style="background-color: blue; color: white;" type="submit" value="Search">
-            <input style="background-color: red; color: white;" type="submit" value="Remove">
+            <input style="background-color: blue; color: white;" name="button" type="submit" value="Search">
+            <input style="background-color: red; color: white;" name="button" type="submit" value="Remove">
         </div>
     </div>
     <br>
@@ -34,18 +34,40 @@
 <%
     String viewType = request.getParameter("view");
     String searchQuery = request.getParameter("field");
-    String query;
+    String button = request.getParameter("button");
+    String query="";
 
-    if(searchQuery != null && !searchQuery.isEmpty()) {
-        query = "SELECT * FROM conference_db.Participant WHERE firstName LIKE '%" + searchQuery + "%' OR lastName LIKE '%" + searchQuery + "%'";
-    } else if (viewType == null || viewType.equals("all")) {
-        query = "SELECT * FROM conference_db.Participant";
-    } else if (viewType.equals("student")) {
-        query = "SELECT * FROM conference_db.Participant WHERE type='student'";
+    if (button != null && button.equals("Remove") && searchQuery != null && !searchQuery.isEmpty()) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/conference_db?autoReconnect=true&useSSL=false", "root", "");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM conference_db.Participant WHERE firstName = ? OR lastName = ?");
+            ps.setString(1, searchQuery);
+            ps.setString(2, searchQuery);
+            int deletedRows = ps.executeUpdate();
+            String message = " record(s) deleted.";
+
+%>
+<script type="text/javascript">
+    alert("<%= deletedRows + message %>");
+    window.location.href = "search.jsp";
+
+</script>
+<%
+        } catch (Exception e) {
+            out.print("An error occurred: " + e.getMessage());
+        }
     } else {
-        query = "SELECT * FROM conference_db.Participant WHERE type='normal'";
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            query = "SELECT * FROM conference_db.Participant WHERE firstName LIKE '%" + searchQuery + "%' OR lastName LIKE '%" + searchQuery + "%'";
+        } else if (viewType == null || viewType.equals("all")) {
+            query = "SELECT * FROM conference_db.Participant";
+        } else if (viewType.equals("student")) {
+            query = "SELECT * FROM conference_db.Participant WHERE type='student'";
+        } else {
+            query = "SELECT * FROM conference_db.Participant WHERE type='normal'";
+        }
     }
-
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/conference_db?autoReconnect=true&useSSL=false", "root", "");

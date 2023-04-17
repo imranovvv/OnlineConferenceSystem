@@ -320,20 +320,6 @@
         <br>
         <button style="background-color: blue; color: white;" type="button" onclick="location.href='search.jsp';">Search Tool</button>
         <input style="background-color: green;color: white; margin-left: 20px;" type="submit" value="Submit">
-        <%
-            // check if the form has been submitted
-            if(request.getMethod().equals("POST")){
-                // perform some action here, such as saving the input to a database
-        %>
-        <script>
-            // display an alert message after the form is submitted
-            alert("Input submitted successfully!");
-            // redirect the user to the same page
-            window.location.href = "<%= request.getContextPath() %>index.jsp";
-        </script>
-        <%
-            }
-        %>
         <input style="background-color:gray; color: white;margin-left: 20px;" type="reset" value="Reset">
     </div>
     </div>

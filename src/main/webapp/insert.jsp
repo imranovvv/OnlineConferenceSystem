@@ -60,4 +60,11 @@
         e.printStackTrace();
     }
 %>
+<script>
+    // display an alert message after the form is submitted
+    alert("Input submitted successfully!");
+    // redirect the user to the same page
+    window.location.href = "index.jsp";
+</script>
+
 
